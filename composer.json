@@ -1,0 +1,22 @@
+{
+    "name": "vodacom/magentosentry",
+    "description": "Module for errors & tracing",
+    "type": "magento2-module",
+    "version": "0.1.0",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "sentry/sdk":"^3.0",
+        "magento/framework":"*",
+        "magento/module-webapi":"*",
+        "magento/module-graph-ql":"*"
+    },
+    "authors": [{
+        "name":"Dustin Bailey",
+        "email":"bailey.dust@gmail.com"
+    }],
+    "autoload":{
+        "files": ["registration.php"],
+        "psr-4": { "MyVendor\\MagentoSentry\\": "" }
+    }
+}

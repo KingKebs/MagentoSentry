@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\GraphQl\Controller\GraphQl">
+        <plugin name ="InstrumentGQlControllerBeforeDispatch"
+                type="Vodacom\MagentoSentry\Plugin\InstrumentGQlControllerBeforeDispatch"
+                sortOrder="1"/>
+        <plugin name ="InstrumentGQlControllerAfterDispatch"
+                type="Vodacom\MagentoSentry\Plugin\InstrumentGQlControllerAfterDispatch"
+                sortOrder="9999"/>
+    </type>
+    <type name="Magento\Webapi\Controller\Rest">
+        <plugin name="InstrumentFrontControllerBeforeDispatch"
+                type="Vodacom\MagentoSentry\Plugin\InstrumentFrontControllerBeforeDispatch"
+                sortOrder="1"/>
+        <plugin name="InstrumentFrontControllerAfterDispatch"
+                type="Vodacom\MagentoSentry\Plugin\InstrumentFrontControllerAfterDispatch"
+                sortOrder="9999"/>
+    </type>
+    <type name="Magento\Framework\AppInterface">
+        <plugin name="SentryOnAppStart"
+                type="Vodacom\MagentoSentry\Plugin\SentryOnAppStart"
+                sortOrder="0"/>
+    </type>
+
+    <type name="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="sentry_breadcrumbs" xsi:type="object">Vodacom\MagentoSentry\Logger\BreadcrumbHandler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
